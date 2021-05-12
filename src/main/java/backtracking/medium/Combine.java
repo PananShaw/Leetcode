@@ -11,6 +11,11 @@ import java.util.List;
  * @date 2021/05/12 8:48
  */
 public class Combine {
+    public static void main(String[] args) {
+        Combine combine = new Combine();
+        System.out.println(combine.combine(8, 3));
+    }
+
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new ArrayList<>();
         backtrace(result, new ArrayDeque<>(), n, k, 1);

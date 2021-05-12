@@ -1,4 +1,4 @@
-package bfs.easy;
+package dfs.easy;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -43,8 +43,8 @@ public class MaxDepth {
         Node node3 = new Node(3, new ArrayList<>(nodeList));
         Node node4 = new Node(4);
         nodeList.clear();
-        nodeList.add(node2);
         nodeList.add(node3);
+        nodeList.add(node2);
         nodeList.add(node4);
         Node root = new Node(1, nodeList);
         System.out.println(new MaxDepth().maxDepth(root));
@@ -53,38 +53,19 @@ public class MaxDepth {
     public int maxDepth(Node root) {
         if (root == null) {
             return 0;
+        } else if (root.children == null) {
+            //叶子结点结束递归
+            return 1;
+        } else {
+            //记录最大深度
+            int max = 0;
+            for (Node item : root.children) {
+                //递归进入叶子节点，从最深处开始增加深度值，若大于最大深度值则替换最大深度值
+                max = Math.max(maxDepth(item), max);
+            }
+            //每一层增加1深度
+            return max + 1;
         }
-        // 核⼼数据结构
-        List<Node> prev = new ArrayList<>();
-        List<Node> next = new ArrayList<>();
-        // 将起点加⼊队列
-        prev.add(root);
-        // 记录扩散的步数
-        int step = 0;
-        while (!prev.isEmpty()) {
-            /* 将当前队列中的所有节点向四周扩散 */
-            for (Node cur : prev) {
-                /* 将 cur 的相邻节点加⼊队列 */
-                if (cur.children != null) {
-                    next.addAll(cur.children);
-                }
-            }
-            /* 划重点：更新步数在这⾥ */
-            step++;
-            prev.clear();
-            if (next.isEmpty()) {
-                break;
-            }
-            for (Node cur : next) {
-                /* 将 cur 的相邻节点加⼊队列 */
-                if (cur.children != null) {
-                    prev.addAll(cur.children);
-                }
-            }
-            next.clear();
-            step++;
-        }
-        return step;
     }
 }
 
