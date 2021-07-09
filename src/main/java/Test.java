@@ -1,10 +1,10 @@
-import offer.Fib;
-
 /**
  * @author Shaw
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println(new Fib().fib(45));
+        int[][] numss = {{1, 3, 1}, {1, 5, 1}, {4, 2, 1}};
+        int[] nums = {1, 2, 5, 9, 5, 9, 5, 5, 5};
+        int num;
     }
 }
